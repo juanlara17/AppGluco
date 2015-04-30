@@ -32,7 +32,7 @@
                 android:padding="10dp"
                 android:hint="Cedula"
                 android:background="@drawable/rounded_edittext_states"
-                android:id="@+id/editText2"
+                android:id="@+id/etUser"
                 android:inputType="number" />
 
             <EditText
@@ -42,8 +42,8 @@
                 android:padding="10dp"
                 android:hint="Contraseña"
                 android:layout_marginTop="10dp"
-                android:id="@+id/editText"
-                android:layout_below="@+id/editText2"
+                android:id="@+id/etPassword"
+                android:layout_below="@+id/etUser"
                 android:inputType="textPassword" />
 
             <Button
@@ -53,15 +53,15 @@
                 android:background="#ffe81910"
                 android:textColor="#fafafa"
                 android:textSize="20dp"
-                android:layout_below="@id/editText"
+                android:layout_below="@id/etPassword"
                 android:text="Iniciar Sesion"
-                android:id="@+id/button" />
+                android:id="@+id/btLogin" />
 
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/button"
+                android:layout_below="@+id/btLogin"
                 android:text="Registrarse"
                 android:textSize="20dp"
                 android:textStyle="bold"
