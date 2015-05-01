@@ -1,5 +1,7 @@
 package com.ingenieria.appgluco;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SyncAdapterType;
 import android.os.AsyncTask;
 import android.os.SystemClock;
@@ -31,6 +33,8 @@ public class MainActivity extends ActionBarActivity {
 
     String IP_Server = "ftp.taxy.co";
     String URL_connect = "ftp://ftp.taxy.co/acces.php";
+    boolean result_back;
+    private ProgressDialog pDialog;
 
 
     @Override
@@ -54,7 +58,7 @@ public class MainActivity extends ActionBarActivity {
 
                 if(checklogindata (usuario, contraseña)== true){
 
-                    new asynclogin.execute(usuario, contraseña);
+                    new asynclogin().execute(usuario, contraseña);
                 }else{
                     err_login();
                 }
@@ -120,9 +124,38 @@ public class MainActivity extends ActionBarActivity {
 
     class asynclogin extends AsyncTask<String, String, String>{
 
+        String user, pass;
+
+        protected void onPreExecute(){
+            pDialog = new ProgressDialog(MainActivity.this);
+            pDialog.setMessage("Autenticando....");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
         @Override
         protected String doInBackground(String... strings) {
-            return null;
+            user = strings[0];
+            pass = strings[1];
+
+            if(loginstatus(user,pass) == true){
+                return "Ok";
+            }else{
+                //err_login();
+                return "err";
+            }
+        }
+
+        protected void onPostExecute (String result){
+            pDialog.dismiss();
+            Log.e("onPostExecute= ", "" + result);
+
+            if (result.equals("Ok")){
+                Intent i = new Intent(MainActivity.this, Patient.class);
+                i.putExtra("user", user);
+                startActivity(i);
+            }
         }
     }
 
