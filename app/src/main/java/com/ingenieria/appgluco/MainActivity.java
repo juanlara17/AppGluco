@@ -6,6 +6,7 @@ import android.content.SyncAdapterType;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +16,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+import java.io.IOException;
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 
@@ -30,11 +37,14 @@ public class MainActivity extends ActionBarActivity {
     Button  Login;
     TextView   registrar;
     Httppostaux    post;
-
+    String userFTP = "juanlara@taxy.co";
+    String passFTP = "6P9#DTH-$+hK";
     String IP_Server = "ftp.taxy.co";
     String URL_connect = "ftp://ftp.taxy.co/acces.php";
     boolean result_back;
     private ProgressDialog pDialog;
+    public FTPClient mFTPCLiente;
+    public HttpClient httpClient;
 
 
     @Override
@@ -56,10 +66,9 @@ public class MainActivity extends ActionBarActivity {
                 String usuario = user.getText().toString();
                 String contraseña = pass.getText().toString();
 
-                if(checklogindata (usuario, contraseña)== true){
-
+                if (checklogindata(usuario, contraseña) == true) {
                     new asynclogin().execute(usuario, contraseña);
-                }else{
+                } else {
                     err_login();
                 }
             }
@@ -77,45 +86,39 @@ public class MainActivity extends ActionBarActivity {
     private void err_login() {
         Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
         vibrator.vibrate(200);
-        Toast.makeText(this, "Error: Cedula y/o Contraseña Incorrectos", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Error: Cedula y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show();
     }
 
-    public boolean loginstatus (String user, String pass){
-        int logstatus = 1;
+    public boolean loginstatus (String username, String password){
+        int logstatus = -1;
 
         ArrayList<NameValuePair>    postparameters2send = new ArrayList<NameValuePair>();
-                                    postparameters2send.add(new BasicNameValuePair("usuario", user));
-                                    postparameters2send.add(new BasicNameValuePair("contraseña", pass));
+                                    postparameters2send.add(new BasicNameValuePair("usuario", username));
+                                    postparameters2send.add(new BasicNameValuePair("password", password));
 
-        JSONArray jdata = post.getserverdata(postparameters2send, URL_connect);
-        SystemClock.sleep(1000);
+        String response = null;
 
-        if (jdata != null && jdata.length() > 0){
-            JSONObject json_data;
+        try {
+            response = CustomHttpClient.executeHttpPost(URL_connect, postparameters2send);
+            String res = response.toString();
+            res = res.replaceAll("\\s+","");
 
-            try {
-                json_data = jdata.getJSONObject(0);
-                logstatus = json_data.getInt("loginstatus");
-                Log.e("loginstatus", "loginstatus = " + logstatus);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            if (logstatus == 0){
-                Log.e("loginstatus", "invalido");
-                return false;
-            }else{
-                Log.e("loginstatus", "valido");
+            if (res.equals("1")){
+                Log.e("Registro: ", "Valido");
                 return true;
+            }else {
+                Log.e("Registro: ", "Invalido");
+                return false;
             }
-        }else{
-            Log.e("JSON", "Error");
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
 
     private boolean checklogindata(String usuario, String contraseña) {
         if (usuario.equals("") || contraseña.equals("")){
-            Log.e("Login UI", "checklogindata user or pass erro");
+            Log.e("Login UI", "checklogindata user or pass error");
             return false;
         }else{
             return true;
@@ -139,8 +142,20 @@ public class MainActivity extends ActionBarActivity {
             user = strings[0];
             pass = strings[1];
 
+            try {
+                FTPClient ftpClient = new FTPClient();
+                ftpClient.connect(InetAddress.getByName(IP_Server));
+                ftpClient.login(userFTP, passFTP);
+                ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+                ftpClient.enterLocalPassiveMode();
+                Toast.makeText(getApplication(), "INGRESO CON EXITO A LA BASE DE DATOS",Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                Toast.makeText(getApplication(), "FALLA EN EL INGRESO",Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
             if(loginstatus(user,pass) == true){
-                return "Ok";
+                return "ok";
             }else{
                 //err_login();
                 return "err";
@@ -151,7 +166,7 @@ public class MainActivity extends ActionBarActivity {
             pDialog.dismiss();
             Log.e("onPostExecute= ", "" + result);
 
-            if (result.equals("Ok")){
+            if (result.equals("ok")){
                 Intent i = new Intent(MainActivity.this, Patient.class);
                 i.putExtra("user", user);
                 startActivity(i);
