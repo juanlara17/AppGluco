@@ -41,11 +41,10 @@ public class MainActivity extends ActionBarActivity {
     EditText user, pass;
     Button  login;
     TextView   registrar;
-    Httppostaux    post;
     String userFTP = "juanlara@taxy.co";
     String passFTP = "6P9#DTH-$+hK";
     String IP_Server = "ftp.taxy.co";
-    String URL_connect = "ftp://juanlara@taxy.co/acces.php";
+    String URL_connect = "http://appgluco.esy.es/appgluco/login.php";
     boolean mConnect;
     private ProgressDialog pDialog;
     public FTPClient mFTPCLiente;
@@ -58,7 +57,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        post = new Httppostaux();
 
         user = (EditText)findViewById(R.id.etUser);
         pass = (EditText)findViewById(R.id.etPassword);
@@ -85,15 +83,17 @@ public class MainActivity extends ActionBarActivity {
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(MainActivity.this, Register.class);
+                startActivity(i);
             }
         });
     }
 
     private void err_login() {
         Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        SystemClock.sleep(500);
         vibrator.vibrate(200);
-        Toast.makeText(this, "Error: Cedula y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Error: Cedula y/o Contraseña Incorrectos", Toast.LENGTH_SHORT).show();
     }
 
     public boolean loginstatus (String username, String password){
@@ -104,7 +104,7 @@ public class MainActivity extends ActionBarActivity {
                                     postparameters2send.add(new BasicNameValuePair("password", password));
 
         try {
-            JSONObject json = jsonParser.makeHttpRequest("http://appgluco.esy.es/appgluco/login.php", "POST",
+            JSONObject json = jsonParser.makeHttpRequest(URL_connect, "POST",
                     postparameters2send);
             SystemClock.sleep(950);
             success = json.getInt(TAG_SUCCESS);
@@ -163,8 +163,9 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(i);
             }else{
                 Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+                SystemClock.sleep(500);
                 vibrator.vibrate(200);
-                Toast.makeText(getApplication(), "Error: Cedula y/o Contraseña Incorrectos", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplication(), "Error: Cedula y/o Contraseña Incorrectos", Toast.LENGTH_SHORT).show();
             }
 
         }
