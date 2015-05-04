@@ -55,9 +55,9 @@ public class Register extends ActionBarActivity {
                 String Contraseña = password.getText().toString();
                 String Telefono = celular.getText().toString();
 
-                if (Nombre.equals("") || Apellido.equals("") || User.equals("") || Contraseña.equals("") || Telefono.equals("")){
+                if (Nombre.equals("") || Apellido.equals("") || User.equals("") || Contraseña.equals("") || Telefono.equals("")) {
                     error_registro();
-                }else{
+                } else {
                     new CreateUser().execute(Nombre, Apellido, User, Contraseña, Telefono);
                 }
             }
@@ -68,7 +68,7 @@ public class Register extends ActionBarActivity {
         Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
         SystemClock.sleep(500);
         vibrator.vibrate(200);
-        Toast.makeText(this, "Registro de los campos se encuentra incompleto", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Complete la informacion en todos los campos", Toast.LENGTH_LONG).show();
     }
 
 
@@ -87,7 +87,6 @@ public class Register extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-            int success;
 
             Nombre = strings[0];
             Apellido = strings[1];
@@ -95,37 +94,58 @@ public class Register extends ActionBarActivity {
             Contraseña = strings[3];
             Telefono = strings[4];
 
-            try {
-                ArrayList<NameValuePair>    postparameters5send = new ArrayList<NameValuePair>();
-                postparameters5send.add(new BasicNameValuePair("nombre", Nombre));
-                postparameters5send.add(new BasicNameValuePair("apellido", Apellido));
-                postparameters5send.add(new BasicNameValuePair("username", User));
-                postparameters5send.add(new BasicNameValuePair("password", Contraseña));
-                postparameters5send.add(new BasicNameValuePair("telefono", Telefono));
-
-                JSONObject json = jsonParser.makeHttpRequest(URL_register, "POST", postparameters5send);
-
-                Log.d("Registering", json.toString());
-                success = json.getInt(TAG_SUCCESS);
-
-                if (success == 1){
-                    Log.d("User created", json.toString());
-                    finish();
-                    return json.getString(TAG_MESSAGE);
-                }else {
-                    Log.d("Registro Failure!", json.getString(TAG_MESSAGE));
-                    return  json.getString(TAG_MESSAGE);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (registrostatus(Nombre, Apellido, User, Contraseña, Telefono) == true){
+                return "ok";
+            }else{
+                //err_login();
+                return "err";
             }
-            return null;
+
         }
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
             progressDialog.dismiss();
-            Toast.makeText(getApplication(), "Usuario creado", Toast.LENGTH_SHORT).show();
+            SystemClock.sleep(500);
+            if(result.equals("ok")){
+                Toast.makeText(getApplication(), "Usuario creado", Toast.LENGTH_SHORT).show();
+                finish();
+            }else {
+                Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+                SystemClock.sleep(500);
+                vibrator.vibrate(200);
+                Toast.makeText(getApplication(), "El Usuario ya se encuentra registrado.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private boolean registrostatus(String nombre, String apellido, String user, String contraseña, String telefono) {
+
+        int success;
+        try {
+            ArrayList<NameValuePair>    postparameters5send = new ArrayList<NameValuePair>();
+            postparameters5send.add(new BasicNameValuePair("nombre", nombre));
+            postparameters5send.add(new BasicNameValuePair("apellido", apellido));
+            postparameters5send.add(new BasicNameValuePair("username", user));
+            postparameters5send.add(new BasicNameValuePair("password", contraseña));
+            postparameters5send.add(new BasicNameValuePair("telefono", telefono));
+
+            JSONObject json = jsonParser.makeHttpRequest(URL_register, "POST", postparameters5send);
+
+            Log.d("Registering", json.toString());
+            SystemClock.sleep(950);
+            success = json.getInt(TAG_SUCCESS);
+
+            if (success == 1){
+                Log.d("User created", json.toString());
+                return true;
+            }else {
+                Log.d("Registro Failure!", json.getString(TAG_MESSAGE));
+                return false;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
