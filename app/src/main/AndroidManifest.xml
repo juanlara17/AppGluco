@@ -29,6 +29,18 @@
             android:name=".Register"
             android:label="@string/title_activity_register" >
         </activity>
+        <activity
+            android:name=".Medico"
+            android:label="@string/title_activity_medico" >
+        </activity>
+        <activity
+            android:name=".DatosPaciente"
+            android:label="@string/title_activity_datos_paciente" >
+        </activity>
+        <activity
+            android:name=".DatosMedico"
+            android:label="@string/title_activity_datos_medico" >
+        </activity>
     </application>
 
 </manifest>

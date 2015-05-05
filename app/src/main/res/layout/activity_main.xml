@@ -1,98 +1,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <LinearLayout
+<Button
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="PACIENTE"
+    android:id="@+id/btPaciente"/>
+
+    <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="80dp"
-        android:id="@+id/lyUp"
-        ></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:gravity="end"
-        android:id="@+id/lyDown"
-        >
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:hint="Cedula"
-                android:background="@drawable/rounded_edittext_states"
-                android:id="@+id/etUser"
-                android:inputType="number" />
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext_states"
-                android:padding="10dp"
-                android:hint="Contraseña"
-                android:layout_marginTop="10dp"
-                android:id="@+id/etPassword"
-                android:layout_below="@+id/etUser"
-                android:inputType="textPassword" />
-
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="#ffe81910"
-                android:textColor="#fafafa"
-                android:textSize="20dp"
-                android:layout_below="@id/etPassword"
-                android:text="Iniciar Sesion"
-                android:id="@+id/btLogin" />
-
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btLogin"
-                android:text="Registrarse"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:id="@+id/tvRegistro"
-                android:textColor="#ffe81910"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#ffe81910"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:text="Universidad Autonoma del Caribe"
-                android:layout_above="@+id/textView"
-                android:id="@+id/textView2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ingeniería Electrónica y Telecomunicaciones"
-                android:textColor="#ffe81910"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/textView"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
-        </RelativeLayout>
-
-    </LinearLayout>
+        android:text="MEDICO"
+        android:id="@+id/btMedico"/>
 
 </LinearLayout>

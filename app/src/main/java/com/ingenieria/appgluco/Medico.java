@@ -10,6 +10,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class Patient extends ActionBarActivity {
+public class Medico extends ActionBarActivity {
 
     EditText user, pass;
     Button login;
@@ -38,12 +40,11 @@ public class Patient extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient);
-
-        user = (EditText)findViewById(R.id.etUserP);
-        pass = (EditText)findViewById(R.id.etPasswordP);
-        login = (Button)findViewById(R.id.btLoginP);
-        registrar = (TextView)findViewById(R.id.tvRegistroP);
+        setContentView(R.layout.activity_medico);
+        user = (EditText)findViewById(R.id.etUserM);
+        pass = (EditText)findViewById(R.id.etPasswordM);
+        login = (Button)findViewById(R.id.btLoginM);
+        registrar = (TextView)findViewById(R.id.tvRegistroM);
 
 
         /********************Button login******************/
@@ -65,7 +66,7 @@ public class Patient extends ActionBarActivity {
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Patient.this, Register.class);
+                Intent i = new Intent(Medico.this, Register.class);
                 startActivity(i);
             }
         });
@@ -97,7 +98,7 @@ public class Patient extends ActionBarActivity {
                 Log.d("Login Successful!", json.toString());
                 // save user data
                 SharedPreferences sp = PreferenceManager
-                        .getDefaultSharedPreferences(Patient.this);
+                        .getDefaultSharedPreferences(Medico.this);
                 return true;
             }else{
                 Log.e("JSON", "ERROR");
@@ -115,7 +116,7 @@ public class Patient extends ActionBarActivity {
         String user, pass;
 
         protected void onPreExecute(){
-            pDialog = new ProgressDialog(Patient.this);
+            pDialog = new ProgressDialog(Medico.this);
             pDialog.setMessage("Autenticando....");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
@@ -140,7 +141,7 @@ public class Patient extends ActionBarActivity {
             Log.e("onPostExecute= ", "" + result);
 
             if (result.equals("ok")){
-                Intent i = new Intent(Patient.this, DatosPaciente.class);
+                Intent i = new Intent(Medico.this, DatosMedico.class);
                 i.putExtra("user", user);
                 startActivity(i);
             }else{
