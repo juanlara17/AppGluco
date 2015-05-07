@@ -41,6 +41,26 @@
             android:name=".DatosMedico"
             android:label="@string/title_activity_datos_medico" >
         </activity>
+        <activity
+            android:name=".frag_Medicion"
+            android:label="@string/title_activity_medicion" >
+        </activity>
+        <activity
+            android:name=".fra_Notificacion"
+            android:label="@string/title_activity_fra__notificacion" >
+        </activity>
+        <activity
+            android:name=".fra_Estadisticas"
+            android:label="@string/title_activity_fra__estadisticas" >
+        </activity>
+        <activity
+            android:name=".fra_Recomendacion"
+            android:label="@string/title_activity_fra__recomendacion" >
+        </activity>
+        <activity
+            android:name=".fra_Alerta"
+            android:label="@string/title_activity_fra__alerta" >
+        </activity>
     </application>
 
 </manifest>

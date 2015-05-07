@@ -2,107 +2,104 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:orientation="vertical"
     android:background="@color/bg_login"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/lyUp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="80dp"
-        android:id="@+id/lyUp"
-        ></LinearLayout>
+        android:padding="80dp"></LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lyDown"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
         android:gravity="end"
-        android:id="@+id/lyDown"
-        >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
             <EditText
+                android:id="@+id/etUserP"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dip"
-                android:padding="10dp"
-                android:textColor="@color/input_login"
-                android:textColorHint="@color/input_login_hint"
                 android:background="@color/white"
                 android:hint="Cedula"
-                android:id="@+id/etUserP"
+                android:inputType="number"
+                android:padding="10dp"
                 android:singleLine="true"
-                android:inputType="number" />
+                android:textColor="@color/input_login"
+                android:textColorHint="@color/input_login_hint" />
 
             <EditText
+                android:id="@+id/etPasswordP"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:hint="Contraseña"
-                android:layout_marginBottom="10dip"
-                android:id="@+id/etPasswordP"
                 android:layout_below="@+id/etUserP"
-                android:textColor="@color/input_login"
-                android:textColorHint="@color/input_login_hint"
+                android:layout_marginBottom="10dip"
                 android:background="@color/white"
-                android:inputType="textPassword" />
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textColor="@color/input_login"
+                android:textColorHint="@color/input_login_hint" />
 
             <Button
+                android:id="@+id/btLoginP"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dip"
-                android:textSize="20dp"
                 android:layout_below="@id/etPasswordP"
-                android:text="Iniciar Sesion"
-                android:id="@+id/btLoginP"
-                android:textColor="@color/btn_login"
+                android:layout_marginBottom="10dip"
                 android:background="@drawable/button_pressed"
-                />
+                android:text="Iniciar Sesion"
+                android:textColor="@color/btn_login"
+                android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/tvRegistroP"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btLoginP"
-                android:textAllCaps="false"
-                android:background="@null"
-                android:text="Registrate!!!"
-                android:textSize="20dip"
-                android:textStyle="bold"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/white"
+                android:background="@null"
                 android:gravity="center"
-                android:id="@+id/tvRegistroP"
-                />
+                android:text="Registrate!!!"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20dip"
+                android:textStyle="bold" />
 
 
             <TextView
+                android:id="@+id/textView2P"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textStyle="bold"
+                android:layout_above="@+id/textViewP"
                 android:layout_centerHorizontal="true"
                 android:text="Universidad Autonoma del Caribe"
-                android:layout_above="@+id/textViewP"
-                android:id="@+id/textView2P" />
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textViewP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
                 android:text="Ingeniería Electrónica y Telecomunicaciones"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/textViewP"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

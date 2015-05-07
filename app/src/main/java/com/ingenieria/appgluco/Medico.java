@@ -141,9 +141,9 @@ public class Medico extends ActionBarActivity {
             Log.e("onPostExecute= ", "" + result);
 
             if (result.equals("ok")){
-                Intent i = new Intent(Medico.this, DatosMedico.class);
+                /*Intent i = new Intent(Medico.this, DatosMedico.class);
                 i.putExtra("user", user);
-                startActivity(i);
+                startActivity(i);*/
             }else{
                 Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
                 SystemClock.sleep(500);

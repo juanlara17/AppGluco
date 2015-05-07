@@ -2,88 +2,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/bg_register"
     android:gravity="center"
-    android:background="@color/bg_register">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
+        android:orientation="vertical"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        >
+        android:paddingRight="20dp">
 
         <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/etNombre"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:padding="10dp"
-            android:hint="Nombre"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint"
             android:background="@color/input_register_bg"
-            />
+            android:hint="Nombre"
+            android:padding="10dp"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
 
         <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp"
             android:id="@+id/etApellido"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
             android:hint="Apellido"
+            android:padding="10dp"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint"
-            android:background="@color/input_register_bg"/>
+            android:textColorHint="@color/input_register_hint" />
 
         <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/etId"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
             android:hint="Identificacion"
-            android:layout_marginBottom="10dp"
-            android:padding="10dp"
             android:inputType="number"
-            android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint"
-            android:background="@color/input_register_bg"/>
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etContraseña"
-            android:hint="Contraseña"
-            android:layout_marginBottom="10dp"
             android:padding="10dp"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint"
-            android:background="@color/input_register_bg"/>
+            android:textColorHint="@color/input_register_hint" />
 
         <EditText
+            android:id="@+id/etContraseña"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
+            android:hint="Contraseña"
+            android:padding="10dp"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
+
+        <EditText
             android:id="@+id/etCelular"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
             android:hint="Celular"
             android:inputType="number"
-            android:layout_marginBottom="10dp"
             android:padding="10dp"
             android:textColor="@color/input_register"
-            android:textColorHint="@color/input_register_hint"
-            android:background="@color/input_register_bg"/>
+            android:textColorHint="@color/input_register_hint" />
 
         <Button
             android:id="@+id/btregister"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
+            android:background="@android:color/holo_red_dark"
+            android:text="Registrar"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"
-            android:background="#ea4c88"
             android:textColor="@color/white"
-            android:text="Registrar" />
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

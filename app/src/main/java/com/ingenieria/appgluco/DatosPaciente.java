@@ -22,6 +22,8 @@ import android.widget.TextView;
 public class DatosPaciente extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */

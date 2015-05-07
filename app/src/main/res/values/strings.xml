@@ -17,4 +17,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
+    <string name="title_activity_medicion">Medicion</string>
+    <string name="title_activity_fra__notificacion">fra_Notificacion</string>
+    <string name="title_activity_fra__estadisticas">fra_Estadisticas</string>
+    <string name="title_activity_fra__recomendacion">fra_Recomendacion</string>
+    <string name="title_activity_fra__alerta">fra_Alerta</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
