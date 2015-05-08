@@ -10,13 +10,13 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ingenieria.appgluco.Class.JSONParser;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -113,7 +113,7 @@ public class Medico extends ActionBarActivity {
     class asynclogin extends AsyncTask<String, String, String> {
 
 
-        String user, pass;
+        String userA, passA;
 
         protected void onPreExecute(){
             pDialog = new ProgressDialog(Medico.this);
@@ -125,10 +125,10 @@ public class Medico extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... strings) {
-            user = strings[0];
-            pass = strings[1];
+            userA = strings[0];
+            passA = strings[1];
 
-            if(loginstatus(user,pass) == true){
+            if(loginstatus(userA,passA) == true){
                 return "ok";
             }else{
                 //err_login();
@@ -141,8 +141,10 @@ public class Medico extends ActionBarActivity {
             Log.e("onPostExecute= ", "" + result);
 
             if (result.equals("ok")){
+                user.setText("");
+                pass.setText("");
                 /*Intent i = new Intent(Medico.this, DatosMedico.class);
-                i.putExtra("user", user);
+                i.putExtra("user", userA);
                 startActivity(i);*/
             }else{
                 Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);

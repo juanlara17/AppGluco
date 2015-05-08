@@ -1,9 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.ingenieria.appgluco.Fragments.DatosPaciente">
-    <item android:id="@+id/action_example" android:title="@string/action_example"
-        app:showAsAction="withText|ifRoom" />
+    xmlns:tools="http://schemas.android.com/tools" tools:context="com.ingenieria.appgluco.Grafica">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

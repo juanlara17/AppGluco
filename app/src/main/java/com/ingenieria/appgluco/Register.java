@@ -4,16 +4,15 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.os.Vibrator;
-import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.ingenieria.appgluco.Class.JSONParser;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;

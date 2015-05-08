@@ -1,22 +1,20 @@
-package com.ingenieria.appgluco;
+package com.ingenieria.appgluco.Fragments;
 
 import android.app.Activity;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+
+import com.ingenieria.appgluco.R;
 
 
 public class DatosPaciente extends ActionBarActivity
@@ -33,6 +31,10 @@ public class DatosPaciente extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+
+    private static final int FRAGMENT_MAIN_POSITION = 0;
+    private static final int FRAGMENT_1_POSITION = 1;
+    private static final int FRAGMENT_2_POSITION = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,25 @@ public class DatosPaciente extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+
+        switch (position){
+            case FRAGMENT_MAIN_POSITION:
+               fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentMain.newInstance(position + 1))
+                        .commit();
+                break;
+            case FRAGMENT_1_POSITION:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentMedicion.newInstance(position + 1))
+                        .commit();
+                break;
+            case FRAGMENT_2_POSITION:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, FragmentEstadistica.newInstance(position + 1))
+                        .commit();
+                break;
+        }
+
     }
 
     public void onSectionAttached(int number) {
@@ -122,16 +140,7 @@ public class DatosPaciente extends ActionBarActivity
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
 
-        public PlaceholderFragment() {
-        }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,4 +157,78 @@ public class DatosPaciente extends ActionBarActivity
         }
     }
 
+    public static class FragmentMain extends Fragment {
+
+        private static final String ARG_SECTION_NUMBER_1 = "section number 1";
+        public static FragmentMain newInstance(int i) {
+            FragmentMain fragment = new FragmentMain();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER_1, i);
+            fragment.setArguments(args);
+            return fragment;
+        }
+        public FragmentMain(){
+
+        }
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View root = inflater.inflate(R.layout.fragment_datos_paciente, container, false);
+            return root;
+        }
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+            ((DatosPaciente)activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER_1));
+        }
+    }
+
+   public static class FragmentMedicion extends Fragment {
+
+        private static final String ARG_SECTION_NUMBER_2 = "Section number 2";
+
+        public static Fragment newInstance(int i) {
+            FragmentMedicion fragment = new FragmentMedicion();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER_2, i);
+            fragment.setArguments(args);
+            return fragment;
+        }
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View root = inflater.inflate(R.layout.medicion,container, false);
+            return root;
+        }
+
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+            ((DatosPaciente)activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER_2));
+        }
+    }
+
+    public static class FragmentEstadistica extends Fragment {
+
+        private static final String ARG_SECTION_NUMBER_3 = "Section number 3";
+
+        public static Fragment newInstance(int i) {
+            FragmentEstadistica fragment = new FragmentEstadistica();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER_3, i);
+            fragment.setArguments(args);
+            return fragment;
+        }
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View root = inflater.inflate(R.layout.estadistica,container, false);
+            return root;
+        }
+
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+            ((DatosPaciente)activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER_3));
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package com.ingenieria.appgluco;
+package com.ingenieria.appgluco.Class;
 
 import android.util.Log;
 
