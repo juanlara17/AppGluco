@@ -8,12 +8,38 @@
     <com.androidplot.xy.XYPlot
         android:id="@+id/mySimpleXYPlot"
         android:layout_width="fill_parent"
-        android:layout_height="100px"
-        android:layout_marginTop="10px"
-        android:layout_marginLeft="10px"
-        android:layout_marginRight="10px"
-        title = "A Simple XYPlot Example"
+        android:layout_height="300dp"
+        androidPlot.title="A Simple XY Plot"
+        androidPlot.domainLabel="Domain"
+        androidPlot.rangeLabel="Range"
+        androidPlot.graphWidget.marginTop="20dp"
+        androidPlot.graphWidget.marginLeft="15dp"
+        androidPlot.graphWidget.marginBottom="25dp"
+        androidPlot.graphWidget.marginRight="10dp"
+
+        androidPlot.legendWidget.iconSizeMetrics.heightMetric.value="15dp"
+        androidPlot.legendWidget.iconSizeMetrics.widthMetric.value="15dp"
+        androidPlot.legendWidget.heightMetric.value="25dp"
+        androidPlot.legendWidget.positionMetrics.anchor="right_bottom"
+        androidPlot.graphWidget.gridLinePaint.color="#000000"
         />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingresar Dato"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_gravity="center_horizontal" />
 
 
 </LinearLayout>

@@ -13,11 +13,10 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Fragments.DatosPaciente"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,7 +33,7 @@
             android:label="@string/title_activity_medico" >
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Fragments.DatosPaciente"
             android:label="@string/title_activity_datos_paciente" >
         </activity>
         <activity
